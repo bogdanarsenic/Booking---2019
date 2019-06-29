@@ -120,13 +120,30 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelsDB\ApartmentDB.cs" />
+    <Compile Include="ModelsDB\ApartmentItemDB.cs" />
+    <Compile Include="ModelsDB\CommentDB.cs" />
+    <Compile Include="ModelsDB\LocationDB.cs" />
+    <Compile Include="ModelsDB\ReservationDB.cs" />
+    <Compile Include="ModelsDB\UserDB.cs" />
+    <Compile Include="Models\Apartman.cs" />
+    <Compile Include="Models\Komentari.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\Lokacija.cs" />
+    <Compile Include="Models\Rezervacija.cs" />
+    <Compile Include="Models\SadrzajApartman.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Baza.mdf" />
+    <Content Include="App_Data\Baza_log.ldf">
+      <DependentUpon>Baza.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -164,8 +181,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
