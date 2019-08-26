@@ -15,29 +15,29 @@ namespace MyFirstMVCWebApp.ModelsDB
         static string connectionString = ConfigurationManager.ConnectionStrings["Baza"].ConnectionString;
 
 
-        public Korisnik GetOne(string Username)
+        public User GetOne(string Username)
         {
             string Query = "SELECT * FROM Users WHERE Username='" + Username + "'";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
                 {
-                    Korisnik user = null;
+                    User user = null;
                     //LibraryDAL library = new LibraryDAL();
                     SqlCommand cmd = new SqlCommand(Query, con);
                     con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        user = new Korisnik()
+                        user = new User()
                         {
                             Id = new Guid(reader["Id"].ToString()),
                             Username = reader["Username"].ToString(),
-                            Lozinka = reader["Password"].ToString(),
-                            Ime = reader["Name"].ToString(),
-                            Prezime = reader["Surname"].ToString(),
-                            Pol = reader["Gender"].ToString(),
-                            Uloga = reader["Role"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            Role = reader["Role"].ToString(),
                             //RentableApartmans
                             //RentedApartmans
                             //Reservations
@@ -54,9 +54,9 @@ namespace MyFirstMVCWebApp.ModelsDB
             }
         }
 
-        public void Insert(Korisnik user)
+        public void Insert(User user)
         {
-            string Query = "INSERT INTO Users(Id, Username, Password, Name, Surname,Gender,Role) VALUES(@Id, @Username, @Password, @Name, @Surname, @Gender, @Role)";
+            string Query = "INSERT INTO Users(Id, Username, Password, Name, Surname, Gender,Role) VALUES(@Id, @Username, @Password, @Name, @Surname, @Gender, @Role)";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -66,11 +66,11 @@ namespace MyFirstMVCWebApp.ModelsDB
 
                     cmd.Parameters.Add("@Id", SqlDbType.NVarChar).Value = user.Id.ToString();
                     cmd.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
-                    cmd.Parameters.Add("@Password", SqlDbType.NChar).Value = user.Lozinka;
-                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user.Ime;
-                    cmd.Parameters.Add("@Surname", SqlDbType.NVarChar).Value = user.Prezime;
-                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar).Value = user.Pol;
-                    cmd.Parameters.Add("@Role", SqlDbType.NVarChar).Value = user.Uloga;
+                    cmd.Parameters.Add("@Password", SqlDbType.NChar).Value = user.Password;
+                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user.Name;
+                    cmd.Parameters.Add("@Surname", SqlDbType.NVarChar).Value = user.Surname;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar).Value = user.Gender;
+                    cmd.Parameters.Add("@Role", SqlDbType.NVarChar).Value = user.Role;
 
                     //cmd.Parameters.Add("@surname", SqlDbType.NVarChar).Value = book.Library.Id.ToString();
 
@@ -82,10 +82,10 @@ namespace MyFirstMVCWebApp.ModelsDB
             }
         }
 
-        public List<Korisnik> GetAllByRole(string Role)
+        public List<User> GetAllByRole(string Role)
         {
             //LibraryDAL library = new LibraryDAL();
-            List<Korisnik> users = new List<Korisnik>();
+            List<User> users = new List<User>();
 
             string Query = "SELECT * FROM Users WHERE Role='" + Role + "'";
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -96,15 +96,15 @@ namespace MyFirstMVCWebApp.ModelsDB
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Korisnik user = new Korisnik()
+                        User user = new User()
                         {
                             Id = new Guid(reader["Id"].ToString()),
                             Username = reader["Username"].ToString(),
-                            Lozinka = reader["Password"].ToString(),
-                            Ime = reader["Name"].ToString(),
-                            Prezime = reader["Surname"].ToString(),
-                            Pol = reader["Gender"].ToString(),
-                            Uloga = reader["Role"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            Role = reader["Role"].ToString(),
                             //RentableApartmans
                             //RentedApartmans
                             //Reservations
@@ -120,10 +120,10 @@ namespace MyFirstMVCWebApp.ModelsDB
         }
 
 
-        public List<Korisnik> GetAllByGender(string Gender)
+        public List<User> GetAllByGender(string Gender)
         {
             //LibraryDAL library = new LibraryDAL();
-            List<Korisnik> users = new List<Korisnik>();
+            List<User> users = new List<User>();
 
             string Query = "SELECT * FROM Users WHERE Gender='" + Gender + "'";
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -134,15 +134,15 @@ namespace MyFirstMVCWebApp.ModelsDB
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Korisnik user = new Korisnik()
+                        User user = new User()
                         {
                             Id = new Guid(reader["Id"].ToString()),
                             Username = reader["Username"].ToString(),
-                            Lozinka = reader["Password"].ToString(),
-                            Ime = reader["Name"].ToString(),
-                            Prezime = reader["Surname"].ToString(),
-                            Pol = reader["Gender"].ToString(),
-                            Uloga = reader["Role"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            Role = reader["Role"].ToString(),
                             //RentableApartmans
                             //RentedApartmans
                             //Reservations
@@ -159,10 +159,10 @@ namespace MyFirstMVCWebApp.ModelsDB
 
 
 
-        public List<Korisnik> GetAll()
+        public List<User> GetAll()
         {
             //LibraryDAL library = new LibraryDAL();
-            List<Korisnik> users = new List<Korisnik>();
+            List<User> users = new List<User>();
 
             string Query = "SELECT * FROM Users";
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -173,15 +173,15 @@ namespace MyFirstMVCWebApp.ModelsDB
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Korisnik user = new Korisnik()
+                        User user = new User()
                         {
                             Id = new Guid(reader["Id"].ToString()),
                             Username = reader["Username"].ToString(),
-                            Lozinka = reader["Password"].ToString(),
-                            Ime = reader["Name"].ToString(),
-                            Prezime = reader["Surname"].ToString(),
-                            Pol = reader["Gender"].ToString(),
-                            Uloga = reader["Role"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            Role = reader["Role"].ToString(),
                             //RentableApartmans
                             //RentedApartmans
                             //Reservations
