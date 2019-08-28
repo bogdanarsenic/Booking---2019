@@ -14,6 +14,7 @@ import { CheckavailService } from './checkavail/checkavail.service';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { GuestComponent } from './guest/guest.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 const appRoutes:Routes=[
   
@@ -36,6 +37,7 @@ const appRoutes:Routes=[
     HomeComponent,
     NavbarComponent,
     GuestComponent,
+    AllUsersComponent,
     
     
   ],
