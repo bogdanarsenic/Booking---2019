@@ -1,3 +1,4 @@
 {
-    "gitlab.instanceUrl": "https://gitlab.com/BogdanArsenic/pw84-2014-webprojekat"
+    "gitlab.instanceUrl": "https://gitlab.com/BogdanArsenic/pw84-2014-webprojekat",
+    "git.ignoreLimitWarning": true
 }
