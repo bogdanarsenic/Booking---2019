@@ -1,0 +1,40 @@
+export class Apartment{
+    Id:string;
+    UserId:string
+    Host:string;
+    Type:string;//
+    RoomsCapacity:number;//
+    GuestCapacity:number;//
+    Address:string
+    DailyPrice:number;//
+    RentedDates:string
+    Pictures:string;//
+    FrontPicture:string;
+    EnteringTime:string;//
+    LeavingTime:string;//
+    AllPictures:string[];
+    Amenities:string;
+    Amenities1:string[];
+    LocationId:string;
+    Longitude:number;
+    Latitude:number;
+    
+    constructor(id:string,host:string,userId:string, type:string, roomsCapacity:number, guestCapacity:number, address:string, dailyPrice:number,pictures:string,enteringTime:string,leavingTime:string,frontPicture:string,amenities:string,longitude:number,latitude:number)
+    {
+        this.Id=id;
+        this.Host=host;
+        this.Type=type;
+        this.RoomsCapacity=roomsCapacity;
+        this.GuestCapacity=guestCapacity;
+        this.Address=address;
+        this.DailyPrice=dailyPrice;
+        this.Pictures=pictures;
+        this.EnteringTime=enteringTime;
+        this.LeavingTime=leavingTime;
+        this.FrontPicture=frontPicture;
+        this.Amenities=amenities;
+        this.Longitude=longitude;
+        this.Latitude=latitude;
+        this.UserId=userId;        
+    }
+}
