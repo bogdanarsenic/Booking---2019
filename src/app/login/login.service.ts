@@ -9,13 +9,16 @@ import {Observable} from 'rxjs';
 })
 export class LoginService {
 
+  user:User;
   constructor(private http:HttpClient) { }
 
   ngOnInit()
-  {}
-
-  GetUser(username:User,password:User)
   {
-    return this.http.get("http://localhost:53417/api/User/GetCurrent");
+      this.user=new User("","","","","","","");
+  }
+
+  GetUser(Username:string,Password:string):Observable<User>
+  {
+    return this.http.get<User>(`http://localhost:53417/api/User/GetCurrent`,{params:{Username,Password}});
   }
 }

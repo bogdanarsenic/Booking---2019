@@ -3,6 +3,7 @@ import {FormGroup,FormBuilder, Validators} from '@angular/forms';
 import {LoginService} from '../login/login.service'
 import {Router} from '@angular/router';
 import {Login} from '../models/Login';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import {Login} from '../models/Login';
 })
 export class LoginComponent implements OnInit {
 
-  korisnik:Login;
+  login:Login;
+  currentUser:User;
   loginUserForm:FormGroup;
 
   constructor(private fb:FormBuilder,private loginService:LoginService,private router:Router)
@@ -23,8 +25,8 @@ export class LoginComponent implements OnInit {
    {
      this.loginUserForm=this.fb.group(
        {
-         username: ['',Validators.required],
-         password: ['',Validators.required]
+         Username: ['',Validators.required],
+         Password: ['',Validators.required]
        }
      );
 
@@ -32,25 +34,54 @@ export class LoginComponent implements OnInit {
    
   ngOnInit() {
     localStorage.setItem('CurrentComponent','LoginComponent');
+    this.login=new Login("","");
+    this.currentUser=new User("","","","","","","");
   }
 
- /* onSubmit()
+ onSubmit()
   {
-    this.korisnik=this.loginUserForm.value;
-    console.log(this.korisnik); 
+    this.login=this.loginUserForm.value;
+  
+    console.log(this.login); 
 
-    this.loginService.GetUser(this.korisnik.Username,this.korisnik.Password).subscribe(
+    this.loginService.GetUser(this.login.Username,this.login.Password).subscribe(
       data=>{
-        if(data=="Username already exists!")
+        this.currentUser=data;
+        if(data==null)
         {
-          alert(data);
+          alert("Invalid username or password");
         }
+
+        localStorage.setItem('CurrentUsername',data.Username);
+        localStorage.setItem('CurrentId',data.Id);
+        localStorage.setItem('CurrentRole',data.Role);
+        localStorage.setItem('Logged','true');
+
+        if(this.currentUser.Role=="Admin")
+        {
+            this.router.navigateByUrl(`/admin/${this.currentUser.Id}`);
+        }
+
+        if(this.currentUser.Role=="Host")
+        {
+          this.router.navigateByUrl(`/host/${this.currentUser.Id}`);
+        }
+
+        if(this.currentUser.Role=="Guest")
+        {
+          this.router.navigateByUrl(`/guest/${this.currentUser.Id}`);
+        }
+        
+
+      },error => {
+        alert("Error!")
+        console.log(error);
       }
     )
 
-    this.router.navigateByUrl("/guest");
+    
     this.loginUserForm.reset();
   }
-*/
+
 
 }

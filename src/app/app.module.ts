@@ -21,7 +21,7 @@ const appRoutes:Routes=[
   { path:'',component:CheckavailComponent},
   { path:'checkavail',component:CheckavailComponent},
   { path:'login',component:LoginComponent},
-   {path: 'guest',component:GuestComponent},
+   {path: 'guest/:Id',component:GuestComponent},
    {path:'register',component:RegisterComponent},
    {path:'home',component:HomeComponent},
    
