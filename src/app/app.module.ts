@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { GuestComponent } from './guest/guest.component';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { AdminComponent } from './admin/admin.component';
+import { HostComponent } from './host/host.component';
 
 const appRoutes:Routes=[
   
@@ -22,9 +24,12 @@ const appRoutes:Routes=[
   { path:'checkavail',component:CheckavailComponent},
   { path:'login',component:LoginComponent},
    {path: 'guest/:Id',component:GuestComponent},
+   {path: 'admin/:Id',component:AdminComponent},
    {path:'register',component:RegisterComponent},
    {path:'home',component:HomeComponent},
-   
+   {path:'host',component:HostComponent},
+   {path:'admin/:Id/AllUsers',component:AllUsersComponent},
+
 ];
 
 
@@ -38,6 +43,8 @@ const appRoutes:Routes=[
     NavbarComponent,
     GuestComponent,
     AllUsersComponent,
+    AdminComponent,
+    HostComponent,
     
     
   ],

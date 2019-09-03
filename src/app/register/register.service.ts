@@ -23,15 +23,21 @@ export class RegisterService {
     return this.http.post("http://localhost:53417/api/User/Register",korisnik);
 
   }
+
   RegisterHost(korisnik:User):Observable<any>
   {
     return this.http.post("http://localhost:53417/api/User/RegisterHost",korisnik);
 
   }
+
   Update(korisnik:User):Observable<any>
   {
     return this.http.post("http://localhost:53417/api/User/Update",korisnik);
 
   }
 
+  GetUser(Username:string,Password:string):Observable<User>
+  {
+    return this.http.get<User>(`http://localhost:53417/api/User/GetCurrent`,{params:{Username,Password}});
+  }
 }

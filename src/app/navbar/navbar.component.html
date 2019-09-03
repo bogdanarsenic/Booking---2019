@@ -2,12 +2,25 @@
   <div class="topnav">
 
 
-    <button ngIf* (routerLink="/login")>Login</button>
-    <button routerLink="/register">Register</button>
+
+    <div *ngIf="ShowLogin()">
+        <button routerLink="/login"> Login </button> 
+        <button routerLink="/register">Register</button>
+        
+    </div>
+
+    <div *ngIf="ShowLogout()">
+        <button (click)="CallLogout()"> Logout</button>
+        <button routerLink="/editprofile"> Edit Profile </button>
+
+    </div>
 
     
-   </div>
-
+    
+    
+    
+  
+  </div>
 </body>
   
 
