@@ -12,7 +12,8 @@ namespace MyFirstMVCWebApp.ModelsDB
     public class ReservationDB
     {
         string connectionString = ConfigurationManager.ConnectionStrings["Baza"].ConnectionString;
-
+        ApartmentDB apartmentDB = new ApartmentDB();
+        UserDB userDb = new UserDB();
 
 
         public void Insert(Rezervacija reservation)
@@ -76,6 +77,40 @@ namespace MyFirstMVCWebApp.ModelsDB
                     return null;
                 }
             }
+        }
+
+        public List<Rezervacija> GetAll()
+        {
+            //LibraryDAL library = new LibraryDAL();
+            List<Rezervacija> rez = new List<Rezervacija>();
+
+            string Query = "SELECT * FROM Reservations";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(Query, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Rezervacija reservation = new Rezervacija();
+                        reservation.Id = new Guid(reader["Id"].ToString());
+                        reservation.ApartmanId = reader["ApartmentId"].ToString();
+                        reservation.StartingDate = Convert.ToDateTime(reader["StartingDate"].ToString());
+                        reservation.BrNoci = Convert.ToInt32(reader["OvernightStaysNum"].ToString());
+                        reservation.Cena = Convert.ToInt32(reader["TotalPrice"].ToString());
+                        reservation.UserId = reader["UserId"].ToString();
+                        reservation.Status = reader["Status"].ToString();
+                     /*   reservation.Apartman = apartmentDB.GetOneById(reservation.ApartmentId);
+                        reservation.Host = userDB.GetOneById(new Guid(reservation.Apartment.UserId)).Name + " " + userDB.GetOneById(new Guid(reservation.Apartment.UserId)).Surname;
+                        reservation.Guest = userDB.GetOneById(new Guid(reservation.UserId)).Name + " " + userDB.GetOneById(new Guid(reservation.UserId)).Surname;
+                        reservations.Add(reservation);
+                        */
+                    }
+                }
+            }
+
+            return rez;
         }
     }
 }

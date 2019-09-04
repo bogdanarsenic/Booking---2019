@@ -14,7 +14,6 @@ namespace MyFirstMVCWebApp.Models
         public string Status { get => status; set => status = value; }
         public int BrNoci { get => brNoci; set => brNoci = value; }
         public Guid Id { get => id; set => id = value; }
-        public User User { get => user; set => user = value; }
         public string UserId { get => userId; set => userId = value; }
         public Apartman Apartman { get => apartman; set => apartman = value; }
         public string ApartmanId { get => apartmanId; set => apartmanId = value; }
@@ -23,7 +22,7 @@ namespace MyFirstMVCWebApp.Models
         private double cena;
         private string status;
         private int brNoci;
-        private User user;
+
         private string userId;
         private Apartman apartman;
         private string apartmanId;
