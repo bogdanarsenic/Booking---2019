@@ -52,6 +52,7 @@ export class NavbarComponent implements OnInit {
     let split=this.router.url.split('/');
     this.userId=split[2];
     this.router.navigateByUrl(`/admin/${this.userId}`);
+    localStorage.setItem('CurrentComponent','AdminComponent');
   }
 
   BackToHost()
@@ -59,6 +60,7 @@ export class NavbarComponent implements OnInit {
     let split=this.router.url.split('/');
     this.userId=split[2];
     this.router.navigateByUrl(`/host/${this.userId}`);
+    localStorage.setItem('CurrentComponent','HostComponent');
   }
 
   BackToGuest()
@@ -66,6 +68,7 @@ export class NavbarComponent implements OnInit {
     let split=this.router.url.split('/');
     this.userId=split[2];
     this.router.navigateByUrl(`/guest/${this.userId}`);
+    localStorage.setItem('CurrentComponent','GuestComponent');
   }
 
   CurrentUsername()
@@ -78,6 +81,12 @@ export class NavbarComponent implements OnInit {
   {
     this.currentId=localStorage.getItem('CurrentId');
     return this.currentId;
+  }
+
+
+  CurrentComponent()
+  {
+    return localStorage.getItem('CurrentComponent');
   }
 
   ShowLogout()
@@ -101,7 +110,17 @@ export class NavbarComponent implements OnInit {
   CallLogout()
   {
     localStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/checkavail');
   }
+
+  BackToCheck()
+  {
+    
+    localStorage.setItem('Logged','false');
+    localStorage.setItem('CurrentComponent','CheckavailComponent');
+    this.router.navigateByUrl('/checkavail');
+  }
+
+
 
 }

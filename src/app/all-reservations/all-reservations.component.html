@@ -1,3 +1,36 @@
-<p>
-  all-reservations works!
-</p>
+<body>
+
+  <table>
+    <tr>
+        <td>
+          Name:
+        </td>
+        <td>
+          Surname:
+        </td>
+
+        <td>
+          Username:
+        </td>
+        <td>
+          Gender:
+        </td>
+
+        <td>
+          Role:
+        </td>
+    </tr>
+
+    <tbody *ngFor="let user of allUsers">
+      <tr>
+        <td> {{user.Name}} </td>
+        <td> {{user.Surname}}</td>
+        <td> {{user.Username}}</td>
+        <td> {{user.Gender}}</td>
+        <td> {{user.Role}}</td>
+
+      </tr>
+    </tbody>
+  
+</table>
+</body>

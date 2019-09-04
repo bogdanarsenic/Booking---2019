@@ -19,6 +19,9 @@ import { AdminComponent } from './admin/admin.component';
 import { HostComponent } from './host/host.component';
 import { AllReservationsComponent } from './all-reservations/all-reservations.component';
 import { AllApartmantsComponent } from './all-apartmants/all-apartmants.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CommentsComponent } from './comments/comments.component';
+import { AddHostComponent } from './add-host/add-host.component';
 
 const appRoutes:Routes=[
   
@@ -27,11 +30,18 @@ const appRoutes:Routes=[
   { path:'login',component:LoginComponent},
    {path: 'guest/:Id',component:GuestComponent},
    {path: 'admin/:Id',component:AdminComponent},
+   {path: 'host/:Id',component:HostComponent},
    {path:'register',component:RegisterComponent},
    {path:'home',component:HomeComponent},
    {path:'host',component:HostComponent},
    {path:'admin/:Id/AllUsers',component:AllUsersComponent},
-
+   {path:'admin/:Id/AllReservations',component:AllReservationsComponent},
+   {path:'admin/:Id/AllApartmants',component:AllApartmantsComponent},
+   {path:'admin/:Id/EditProfile',component:EditProfileComponent},
+   {path:'host/:Id/EditProfile',component:EditProfileComponent},
+   {path:'guest/:Id/EditProfile',component:EditProfileComponent},
+   {path:'admin/:Id/AddHost',component:AddHostComponent}
+   
 ];
 
 
@@ -49,6 +59,9 @@ const appRoutes:Routes=[
     HostComponent,
     AllReservationsComponent,
     AllApartmantsComponent,
+    EditProfileComponent,
+    CommentsComponent,
+    AddHostComponent,
     
     
   ],

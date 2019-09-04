@@ -10,6 +10,7 @@ export class CheckavailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.setItem('CurrentComponent','CheckAvailComponent');
   }
 
 }

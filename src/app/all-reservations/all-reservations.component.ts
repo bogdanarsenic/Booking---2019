@@ -10,6 +10,7 @@ export class AllReservationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.setItem('CurrentComponent','AllReservationsComponent');
   }
 
 }

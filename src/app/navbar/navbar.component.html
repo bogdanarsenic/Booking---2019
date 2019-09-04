@@ -5,21 +5,39 @@
 
     <div *ngIf="ShowLogin()">
         <button routerLink="/login"> Login </button> 
-        <button routerLink="/register">Register</button>
-        
+        <button routerLink="/register">Register</button>      
+        <div *ngIf="CurrentComponent()=='LoginComponent'||CurrentComponent()=='RegisterComponent'" (click)="BackToCheck()">
+          <button class="back">Back </button>
+        </div>"
+          
+      
     </div>
 
     <div *ngIf="ShowLogout()">
-        <button (click)="CallLogout()"> Logout</button>
-        <button routerLink="/editprofile"> Edit Profile </button>
+        <button (click)="CallLogout()"> Logout</button>  
+        <button *ngIf="isAdmin()" [routerLink]="['admin',CurrentId(),'EditProfile']"> Edit Profile </button>
+        <button *ngIf="isHost()" [routerLink]="['host',CurrentId(),'EditProfile']"> Edit Profile </button>
+        <button *ngIf="isGuest()" [routerLink]="['guest',CurrentId(),'EditProfile']"> Edit Profile </button> 
 
+
+        <button *ngIf="isAdmin()" [routerLink]="['admin',CurrentId(),'AddHost']">Add Host </button>
+
+        <button (click)="BackToAdmin()" *ngIf="(CurrentComponent()=='AllUsersComponent'||CurrentComponent()=='AllReservationsComponent'||CurrentComponent()=='AllApartmantsComponent'||CurrentComponent()=='EditProfileComponent') && isAdmin()">
+          Back to Admin
+        </button>
+
+        <button (click)="BackToHost()" *ngIf="(CurrentComponent()=='AllUsersComponent'||CurrentComponent()=='AllReservationsComponent'||CurrentComponent()=='AllApartmantsComponent'||CurrentComponent()=='EditProfileComponent') && isHost()">
+          Back to Host
+        </button>
+
+        <button (click)="BackToGuest()" *ngIf="(CurrentComponent()=='AllUsersComponent'||CurrentComponent()=='AllReservationsComponent'||CurrentComponent()=='AllApartmantsComponent'||CurrentComponent()=='EditProfileComponent') && isGuest()">
+          Back to Guest
+        </button>
+
+        
+        
     </div>
 
-    
-    
-    
-    
-  
   </div>
 </body>
   

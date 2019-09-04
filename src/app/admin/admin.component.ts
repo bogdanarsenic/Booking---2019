@@ -10,6 +10,8 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.setItem('CurrentComponent','AdminComponent');
+    localStorage.setItem('CurrentRole','Admin');
   }
 
 }

@@ -19,7 +19,7 @@ export class AllUsersComponent implements OnInit {
   constructor(private router:Router, private allUserService:AllUsersService) { }
 
   ngOnInit() {
-    localStorage.setItem('CurrentComponent','AllUsers')
+    localStorage.setItem('CurrentComponent','AllUsersComponent');
 
     if(localStorage.getItem('CurrentRole')=="Admin")
     {
