@@ -4,6 +4,7 @@ import {User}from '../models/User';
 import {RegisterService} from '../register/register.service'
 import {Router} from '@angular/router';
 import {LoginService} from '../login/login.service'
+import { Login } from '../models/Login';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   korisnik:User;
   registerUserForm:FormGroup;
-  currentUser:User;
+  currentUser:Login;
+  user:User;
 
   constructor (private fb:FormBuilder,private registerService:RegisterService,private loginService:LoginService,private router:Router){
     this.createForm();
@@ -24,11 +26,11 @@ export class RegisterComponent implements OnInit {
   createForm()
   {
     this.registerUserForm=this.fb.group({
-      username: ['',Validators.required],
-      password:['',Validators.required],
-      name:['',Validators.required],
-      surname:['',Validators.required],
-      gender:['',Validators.required]
+      Username: ['',Validators.required],
+      Password:['',Validators.required],
+      Name:['',Validators.required],
+      Surname:['',Validators.required],
+      Gender:['',Validators.required]
     });
   }
 
@@ -37,36 +39,40 @@ export class RegisterComponent implements OnInit {
   {
       localStorage.setItem('CurrentComponent','RegisterComponent');
       this.korisnik=new User("","","","","","","");
+      this.currentUser=new Login("","");
   }
 
   onSubmit()
   {
     this.korisnik=this.registerUserForm.value;
+    this.currentUser.Username=this.korisnik.Username;
+    this.currentUser.Password=this.korisnik.Password;
+
     console.log(this.korisnik);
 
     this.registerService.RegisterUser(this.korisnik).subscribe(
       data=>{
 
-        this.korisnik=data;
-        if(data=="Username already exists!")
-        {
-          alert(data);
-        }
-
-        localStorage.setItem('CurrentUsername',data.Username);
-        localStorage.setItem('CurrentId',data.Id);
-        localStorage.setItem('CurrentRole',data.Role);
-        localStorage.setItem('Logged','true');
-
-        this.router.navigateByUrl(`guest/${this.korisnik.Id}`);
-        
-      }
+            this.korisnik=data;
+            if(data=="Username already exists!")
+            {
+              alert(data);
+            } 
       
+            this.registerService.GetUser(this.currentUser.Username,this.currentUser.Password).subscribe(
+              data=>{
+                      this.user=data;
+                      localStorage.setItem('Logged','true');
+                      this.router.navigateByUrl(`/guest/${this.user.Id}`);
+                     }
+            )
+                    }
     )
 
     
-    
+
     this.registerUserForm.reset();
+    
     
   }
   

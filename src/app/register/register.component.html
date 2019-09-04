@@ -34,9 +34,9 @@
                   <h3 class="register"> REGISTER:</h3>
                     <div class="form-group">
                         <span class="form-label">Your Username/Email: </span>
-                        <input class="form-control" type="text" name="username" id="username" formControlName="username" placeholder="Enter your username or your email">
-                        <span *ngIf="registerUserForm.controls.username.touched">
-                            <small *ngIf="registerUserForm.controls.username.errors?.required">
+                        <input class="form-control" type="text" name="Username" id="Username" formControlName="Username" placeholder="Enter your username or your email">
+                        <span *ngIf="registerUserForm.controls.Username.touched">
+                            <small *ngIf="registerUserForm.controls.Username.errors?.required">
                                     <div class="attent">
                                             Username is required!
                                     </div>
@@ -46,9 +46,9 @@
 
                     <div class="form-group">
                         <span class="form-label">Your Password: </span>
-                        <input class="form-control" type="password" name="password" id="password" formControlName="password" placeholder="Enter your password">
-                        <span *ngIf="registerUserForm.controls.password.touched">
-                                <small *ngIf="registerUserForm.controls.password.errors?.required">
+                        <input class="form-control" type="password" name="Password" id="Password" formControlName="Password" placeholder="Enter your password">
+                        <span *ngIf="registerUserForm.controls.Password.touched">
+                                <small *ngIf="registerUserForm.controls.Password.errors?.required">
                                    <div class="attent">
                                     Password is required!
                                     </div>
@@ -58,9 +58,9 @@
 
                     <div class="form-group">
                         <span class="form-label"> Name: </span>
-                        <input class="form-control" type="text" name="name" id="name" formControlName="name" placeholder="Name">
-                        <span *ngIf="registerUserForm.controls.name.touched">
-                                <small *ngIf="registerUserForm.controls.name.errors?.required">
+                        <input class="form-control" type="text" name="Name" id="Name" formControlName="Name" placeholder="Name">
+                        <span *ngIf="registerUserForm.controls.Name.touched">
+                                <small *ngIf="registerUserForm.controls.Name.errors?.required">
                                         <div class="attent">
                                                 Name is required!
                                          </div>
@@ -70,9 +70,9 @@
 
                     <div class="form-group">
                         <span class="form-label">Last Name: </span>
-                        <input class="form-control" type="text" name="surname" id="surname" formControlName="surname" placeholder="Last Name">
-                        <span *ngIf="registerUserForm.controls.surname.touched">
-                                <small *ngIf="registerUserForm.controls.surname.errors?.required">
+                        <input class="form-control" type="text" name="Surname" id="Surname" formControlName="Surname" placeholder="Last Name">
+                        <span *ngIf="registerUserForm.controls.Surname.touched">
+                                <small *ngIf="registerUserForm.controls.Surname.errors?.required">
                                         <div class="attent">
                                                 Lastname is required!
                                         </div>
@@ -83,8 +83,8 @@
                     <div class="form-group">
 
                     <span class="form-label">Gender: </span>
-                    <input type="radio" name="gender" id="gender" formControlName="gender" value="male" checked/> Male
-                    <input type="radio" name="gender" id="gender" formControlName="gender" value="female"/> Female
+                    <input type="radio" name="Gender" id="Gender" formControlName="Gender" value="male" checked/> Male
+                    <input type="radio" name="Gender" id="Gender" formControlName="Gender" value="female"/> Female
                     
                 </div>
 

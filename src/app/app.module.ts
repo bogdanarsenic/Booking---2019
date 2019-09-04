@@ -17,6 +17,8 @@ import { GuestComponent } from './guest/guest.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { AdminComponent } from './admin/admin.component';
 import { HostComponent } from './host/host.component';
+import { AllReservationsComponent } from './all-reservations/all-reservations.component';
+import { AllApartmantsComponent } from './all-apartmants/all-apartmants.component';
 
 const appRoutes:Routes=[
   
@@ -45,6 +47,8 @@ const appRoutes:Routes=[
     AllUsersComponent,
     AdminComponent,
     HostComponent,
+    AllReservationsComponent,
+    AllApartmantsComponent,
     
     
   ],

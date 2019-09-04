@@ -17,8 +17,8 @@ export class AllUsersService {
       return this.httpClient.get<User[]>(`http://localhost:53417/api/User/GetAllUsers`);
   }
 
-  GetAllApartmants():Observable<Reservation[]>
+  GetAllReservationByUsers(Id: string):Observable<User[]>
   {
-    return this.httpClient.get<Reservation[]>(`http://localhost:53417/api/Reservation/GetAllReservations`);
+    return this.httpClient.get<User[]>(`http://localhost:11896/api/User/GetAllReservationByUsers`,{params:{Id}});
   }
 }

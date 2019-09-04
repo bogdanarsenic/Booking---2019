@@ -13,6 +13,7 @@ export class AllUsersComponent implements OnInit {
 
   allUsers:User[];
   user:User;
+  id:String;
 
 
   constructor(private router:Router, private allUserService:AllUsersService) { }
@@ -30,6 +31,12 @@ export class AllUsersComponent implements OnInit {
           }
         )
 
+    }
+
+    if(localStorage.getItem('CurrentRole')=="Host")
+    {
+      this.id=localStorage.getItem('CurrentId');
+      
     }
   }
 
