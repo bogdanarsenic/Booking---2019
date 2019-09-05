@@ -13,10 +13,13 @@ namespace MyFirstMVCWebApp.Controllers
     public class UserController : ApiController
     {
         UserDB userDB = new UserDB();
+       
+
 
        [Route("Register")]
        public string Register(User register)
-        {
+        {           
+
             if(userDB.GetOne(register.Username)!=null)
             {
                 return "Username already exist!";

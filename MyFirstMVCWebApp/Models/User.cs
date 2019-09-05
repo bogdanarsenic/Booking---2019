@@ -22,6 +22,7 @@ namespace MyFirstMVCWebApp.Models
         public User()
         {
 
+
         }
 
         public User(string username,string password,string name,string surname,string gender,string role)

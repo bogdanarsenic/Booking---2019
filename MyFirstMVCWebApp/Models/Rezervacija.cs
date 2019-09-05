@@ -17,6 +17,9 @@ namespace MyFirstMVCWebApp.Models
         public string UserId { get => userId; set => userId = value; }
         public Apartman Apartman { get => apartman; set => apartman = value; }
         public string ApartmanId { get => apartmanId; set => apartmanId = value; }
+        public string Gost { get; set; }
+        public string Host { get; set; }
+        public string DaniRezervacije { get; set; }
 
         private Guid id;
         private double cena;

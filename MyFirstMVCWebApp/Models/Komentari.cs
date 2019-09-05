@@ -18,19 +18,23 @@ namespace MyFirstMVCWebApp.Models
         public string Komentar { get => komentar; set => komentar = value; }
         public int Ocena { get => ocena; set => ocena = value; }
         public string ApartmanId { get => apartmanId; set => apartmanId = value; }
+        public bool IsApproved { get; set; }
+        public User User { get; set; }
+        public string Gost { get; set; }
 
         public Komentari()
         {
 
         }
 
-        public Komentari(string korisnikId,string apartmanId,string text,int ocena)
+        public Komentari(string korisnikId,string apartmanId,string text,int ocena,bool isApproved)
         {
             Id = Guid.NewGuid();
             KorisnikId = korisnikId;
             ApartmanId = apartmanId;
             Komentar = komentar;
             Ocena = ocena;
+            IsApproved = isApproved;
         }
     }
 }

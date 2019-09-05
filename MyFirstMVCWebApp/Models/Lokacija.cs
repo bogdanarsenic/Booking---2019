@@ -7,15 +7,12 @@ namespace MyFirstMVCWebApp.Models
 {
     public class Lokacija
     {
-        private Guid id;
-        private float geografskaSirina;
-        private float geografskaDuzina;
-        private string adresa;
+        
 
-        public float GeografskaSirina { get => geografskaSirina; set => geografskaSirina = value; }
-        public float GeografskaDuzina { get => geografskaDuzina; set => geografskaDuzina = value; }
-        public string Adresa { get => adresa; set => adresa = value; }
-        public Guid Id { get => id; set => id = value; }
+        public float Lattitude { get; set; }
+        public float Longitude { get; set; }
+        public string Adresa { get;set; }
+        public Guid Id { get;set; }
 
         public Lokacija()
         {
@@ -24,8 +21,8 @@ namespace MyFirstMVCWebApp.Models
         public Lokacija(float geografskasirina,float geografskaduzina,string adresa)
         {
             Id = Guid.NewGuid();
-            GeografskaDuzina = geografskaduzina;
-            GeografskaSirina = geografskaSirina;
+            Longitude = geografskaduzina;
+            Lattitude = geografskasirina;
             Adresa = adresa;
         }
     }

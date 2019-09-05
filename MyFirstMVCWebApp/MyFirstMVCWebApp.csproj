@@ -148,7 +148,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApartmentController.cs" />
+    <Compile Include="Controllers\ApartmentItemController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -226,6 +231,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\ApartmentItem\" />
+    <Folder Include="Views\Apartment\" />
+    <Folder Include="Views\Comment\" />
+    <Folder Include="Views\Image\" />
+    <Folder Include="Views\Location\" />
     <Folder Include="Views\Reservation\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

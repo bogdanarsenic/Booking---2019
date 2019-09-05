@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace MyFirstMVCWebApp.Controllers
 {
-    public class ReservationController : ApiController
+    public class ImageController : ApiController
     {
     }
 }

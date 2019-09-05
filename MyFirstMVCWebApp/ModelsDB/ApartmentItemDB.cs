@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -70,6 +71,28 @@ namespace MyFirstMVCWebApp.ModelsDB
             }
 
             return apartmentItems;
+        }
+
+        public void Insert(SadrzajApartman sa)
+        {
+            string Query = "INSERT INTO ApartmentItems(Id, Item) VALUES(@Id, @Item)";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(Query, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.Add("@Id", SqlDbType.NVarChar).Value = sa.Id.ToString();
+                    cmd.Parameters.Add("@Predmet", SqlDbType.NVarChar).Value = sa.Predmet;
+
+
+                    if (GetOne(sa.Id) == null)
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
         }
     }
 }

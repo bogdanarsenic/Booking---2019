@@ -13,7 +13,7 @@ namespace MyFirstMVCWebApp.ModelsDB
     {
         string connectionString = ConfigurationManager.ConnectionStrings["Baza"].ConnectionString;
         ApartmentDB apartmentDB = new ApartmentDB();
-        UserDB userDb = new UserDB();
+        UserDB userDB = new UserDB();
 
 
         public void Insert(Rezervacija reservation)
@@ -34,49 +34,47 @@ namespace MyFirstMVCWebApp.ModelsDB
                     cmd.Parameters.Add("@UserId", SqlDbType.NVarChar).Value = reservation.UserId;
                     cmd.Parameters.Add("@Status", SqlDbType.NVarChar).Value = reservation.Status;
 
+                    cmd.ExecuteNonQuery();
                     //cmd.Parameters.Add("@surname", SqlDbType.NVarChar).Value = book.Library.Id.ToString();
 
-                    if (GetOne(reservation.Id.ToString()) == null)
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
+                    
                 }
             }
         }
 
 
-        public Rezervacija GetOne(string Id)
+        public List<Rezervacija> GetAllByApId(string IdAp)
         {
-            string Query = "SELECT * FROM Reservations WHERE Id='" + Id + "'";
+
+            //LibraryDAL library = new LibraryDAL();
+            List<Rezervacija> reservations = new List<Rezervacija>();
+
+            string Query = "SELECT * FROM Reservations WHERE ApartmentId='" + IdAp + "'";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                try
+                using (SqlCommand cmd = new SqlCommand(Query, con))
                 {
-                    Rezervacija reservation = null;
-                    //LibraryDAL library = new LibraryDAL();
-                    SqlCommand cmd = new SqlCommand(Query, con);
                     con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        reservation = new Rezervacija()
-                        {
-                            Id = new Guid(reader["Id"].ToString()),
-                            ApartmanId = reader["ApartmentId"].ToString(),
-                            StartingDate = Convert.ToDateTime(reader["StartingDate"].ToString()),
-                            BrNoci = Convert.ToInt32(reader["Name"].ToString()),
-                            Cena = Convert.ToInt32(reader["Surname"].ToString()),
-                            UserId = reader["Gender"].ToString(),
-                            Status = reader["Role"].ToString(),
-                        };
+                        Rezervacija reservation = new Rezervacija();
+                        reservation.Id = new Guid(reader["Id"].ToString());
+                        reservation.ApartmanId = reader["ApartmentId"].ToString();
+                        reservation.StartingDate = Convert.ToDateTime(reader["StartingDate"].ToString());
+                        reservation.BrNoci = Convert.ToInt32(reader["OvernightStaysNum"].ToString());
+                        reservation.Cena = Convert.ToInt32(reader["TotalPrice"].ToString());
+                        reservation.UserId = reader["UserId"].ToString();
+                        reservation.Status = reader["Status"].ToString();
+                        reservation.Apartman = apartmentDB.GetOneById(reservation.ApartmanId);
+                        reservation.Host = userDB.GetOneByID(new Guid(reservation.Apartman.UserId)).Name + " " + userDB.GetOneByID(new Guid(reservation.Apartman.UserId)).Surname;
+                        reservation.Gost = userDB.GetOneByID(new Guid(reservation.UserId)).Name + " " + userDB.GetOneByID(new Guid(reservation.UserId)).Surname;
+                        reservations.Add(reservation);
                     }
-                    return reservation;
-                }
-                catch
-                {
-                    return null;
                 }
             }
+
+            return reservations;
         }
 
         public List<Rezervacija> GetAll()
@@ -101,11 +99,11 @@ namespace MyFirstMVCWebApp.ModelsDB
                         reservation.Cena = Convert.ToInt32(reader["TotalPrice"].ToString());
                         reservation.UserId = reader["UserId"].ToString();
                         reservation.Status = reader["Status"].ToString();
-                     /*   reservation.Apartman = apartmentDB.GetOneById(reservation.ApartmentId);
-                        reservation.Host = userDB.GetOneById(new Guid(reservation.Apartment.UserId)).Name + " " + userDB.GetOneById(new Guid(reservation.Apartment.UserId)).Surname;
-                        reservation.Guest = userDB.GetOneById(new Guid(reservation.UserId)).Name + " " + userDB.GetOneById(new Guid(reservation.UserId)).Surname;
-                        reservations.Add(reservation);
-                        */
+                        reservation.Apartman = apartmentDB.GetOneById(reservation.ApartmanId);
+                        reservation.Host = userDB.GetOneByID(new Guid(reservation.Apartman.UserId)).Name + " " + userDB.GetOneByID(new Guid(reservation.Apartman.UserId)).Surname;
+                        reservation.Gost = userDB.GetOneByID(new Guid(reservation.UserId)).Name + " " + userDB.GetOneByID(new Guid(reservation.UserId)).Surname;
+                        rez.Add(reservation);
+                        
                     }
                 }
             }

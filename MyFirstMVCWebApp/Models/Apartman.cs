@@ -7,69 +7,60 @@ namespace MyFirstMVCWebApp.Models
 {
     public class Apartman
     {
-        private Guid id;
-        private string tip;
-        private int brSoba;
-        private int brGost;
-        private Lokacija lokacija;
-        private string lokacijaId;
-        private string datum;
-        private double cena;
-        private List<Komentari> komentari;
-        private string slike;
-        private bool aktivan;
-        private List<Rezervacija> rezervacije;
-        private string sadrzaj;
-        private string vremePrijave;
-        private string vremeOdjave;
-        private string korisnikId;
-        private string slobodniDani;
-        private string izadavanjeDani;
-
-        
-
-        public string Tip { get => tip; set => tip = value; }
-        public int BrSoba { get => brSoba; set => brSoba = value; }
-        public int BrGost { get => brGost; set => brGost = value; }
-        public string LokacijaId { get => lokacijaId; set => lokacijaId = value; }
-        public string Datum { get => datum; set => datum = value; }
-        public double Cena { get => cena; set => cena = value; }
-        public string VremePrijave { get => vremePrijave; set => vremePrijave = value; }
-        public string VremeOdjave { get => vremeOdjave; set => vremeOdjave = value; }
-        public Lokacija Lokacija { get => lokacija; set => lokacija = value; }
-        public List<Komentari> Komentari { get => komentari; set => komentari = value; }
-        public string Slike { get => slike; set => slike = value; }
-        public bool Aktivan { get => aktivan; set => aktivan = value; }
-        public List<Rezervacija> Rezervacije { get => rezervacije; set => rezervacije = value; }
-        public string Sadrzaj { get => sadrzaj; set => sadrzaj = value; }
-        public string KorisnikId { get => korisnikId; set => korisnikId = value; }
-        public string SlobodniDani { get => slobodniDani; set => slobodniDani = value; }
-        public string IzadavanjeDani { get => izadavanjeDani; set => izadavanjeDani = value; }
-        public Guid Id { get => id; set => id = value; }
-
+        public Guid Id { get; set; }
+        public string Type { get; set; }
+        public int RoomsCapacity { get; set; }
+        public int GuestCapacity { get; set; }
+        public string LocationId { get; set; }
+        public Lokacija Location { get; set; }
+        public string RentableDates { get; set; }
+        public string FreeDates { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
+        public List<Komentari> Comments { get; set; }
+        public string Pictures { get; set; }
+        public int DailyPrice { get; set; }
+        public string EnteringTime { get; set; }
+        public string LeavingTime { get; set; }
+        public bool IsActive { get; set; }
+        public string Amenities { get; set; }
+        public List<Rezervacija> Reservations { get; set; }
+        public string Host { get; set; }
+        public string Address { get; set; }
+        public string RentedDates { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Apartman()
-        { }
-
-        public Apartman(string tip,int brSoba,int brGost,string lokacijaId, string datum,double cena,string vremePrijave,string vremeOdjave,string slike,bool aktivan,string sadrzaj,string korisnikId,string slobodniDani,string izdavanjeDani)
         {
-            Rezervacije = new List<Rezervacija>();
-            Komentari = new List<Komentari>();
-            Id = Guid.NewGuid();
-            VremePrijave = "11AM";
-            VremeOdjave = "10PM";
-            Aktivan = false;
-            Tip = tip;
-            BrSoba = brSoba;
-            BrGost = brGost;
-            LokacijaId = lokacijaId;
-            SlobodniDani = slobodniDani;
-            IzadavanjeDani = izadavanjeDani;
-            Slike = slike;
-            Cena = cena;
-            Sadrzaj = sadrzaj;
-           
+
         }
-            
+
+        public Apartman(string type, int roomsCapacity, int guestCapacity, string locationId, string rentableDates, string freeDates, string userId, string comments, string pictures, int dailyPrice, string enteringTime, string leavingTime, bool isActive, string amenities, string host, string address, string rentedDates, float latitude, float longitude)
+        {
+            Id = Guid.NewGuid();
+            EnteringTime = "2PM";
+            LeavingTime = "10PM";
+            IsActive = false;
+            Type = type;
+            RoomsCapacity = roomsCapacity;
+            GuestCapacity = guestCapacity;
+            LocationId = locationId;
+            RentableDates = rentableDates;
+            FreeDates = freeDates;
+            UserId = userId;
+            Comments = new List<Komentari>();
+            Pictures = pictures;
+            DailyPrice = dailyPrice;
+            Amenities = amenities;
+            Reservations = new List<Rezervacija>();
+            Address = address;
+            Host = host;
+            RentedDates = rentedDates;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
     }
+
 }

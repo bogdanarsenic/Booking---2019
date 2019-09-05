@@ -15,9 +15,36 @@ namespace MyFirstMVCWebApp.ModelsDB
         static string connectionString = ConfigurationManager.ConnectionStrings["Baza"].ConnectionString;
 
 
+        public UserDB()
+        {
+            User admin = new User();
+
+
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Bogdan\Desktop\MyFirstMVCWebApp\Admin.txt");
+     
+            foreach (string line in lines)
+            {
+              
+                string[] nesto = line.Split(',');
+
+                admin.Id = Guid.NewGuid();
+                admin.Username = nesto[0];
+                admin.Password = nesto[1];
+                admin.Name = nesto[2];
+                admin.Surname = nesto[3];
+                admin.Gender = nesto[4];
+                admin.Role = "Admin";
+
+                Insert(admin);
+            }
+
+            
+        }
+        
         public User GetOne(string Username)
         {
             string Query = "SELECT * FROM Users WHERE Username='" + Username + "'";
+            
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
@@ -89,6 +116,9 @@ namespace MyFirstMVCWebApp.ModelsDB
 
         public void Insert(User user)
         {
+
+            
+
             string Query = "INSERT INTO Users(Id, Username, Password, Name, Surname, Gender,Role) VALUES(@Id, @Username, @Password, @Name, @Surname, @Gender, @Role)";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -115,6 +145,10 @@ namespace MyFirstMVCWebApp.ModelsDB
 
                 }
             }
+
+         
+
+          
         }
 
         public List<User> GetAllByRole(string Role)
