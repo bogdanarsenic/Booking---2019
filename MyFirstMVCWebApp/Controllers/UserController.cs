@@ -14,11 +14,41 @@ namespace MyFirstMVCWebApp.Controllers
     {
         UserDB userDB = new UserDB();
        
+        public int Proba()
+        {
+                int brojac = 0;
+                User admin = new User();
+                string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Bogdan\Desktop\MyFirstMVCWebApp\Admin.txt");
+
+                foreach (string line in lines)
+                {
+
+                    string[] nesto = line.Split(',');
+
+                    admin.Id = Guid.NewGuid();
+                    admin.Username = nesto[0];
+                    admin.Password = nesto[1];
+                    admin.Name = nesto[2];
+                    admin.Surname = nesto[3];
+                    admin.Gender = nesto[4];
+                    admin.Role = "Admin";
+                    brojac++;
+                    userDB.Insert(admin);
+                }
+
+                return brojac;
+        
+          }
+       
 
 
-       [Route("Register")]
-       public string Register(User register)
+        [Route("Register")]
+        public string Register(User register)
         {           
+            if(this.Proba()==0)
+            {
+                Proba();
+            }
 
             if(userDB.GetOne(register.Username)!=null)
             {

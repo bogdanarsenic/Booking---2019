@@ -13,31 +13,10 @@ namespace MyFirstMVCWebApp.ModelsDB
     {
 
         static string connectionString = ConfigurationManager.ConnectionStrings["Baza"].ConnectionString;
-
+      
 
         public UserDB()
         {
-            User admin = new User();
-
-
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Bogdan\Desktop\MyFirstMVCWebApp\Admin.txt");
-     
-            foreach (string line in lines)
-            {
-              
-                string[] nesto = line.Split(',');
-
-                admin.Id = Guid.NewGuid();
-                admin.Username = nesto[0];
-                admin.Password = nesto[1];
-                admin.Name = nesto[2];
-                admin.Surname = nesto[3];
-                admin.Gender = nesto[4];
-                admin.Role = "Admin";
-
-                Insert(admin);
-            }
-
             
         }
         

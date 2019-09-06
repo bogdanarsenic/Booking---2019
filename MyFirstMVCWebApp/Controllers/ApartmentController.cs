@@ -92,10 +92,6 @@ namespace MyFirstMVCWebApp.Controllers
             }
 
 
-
-
-
-
             [Route("GetAllApartmentsByUserId")]
             public List<Apartman> GetAllApartmentsByUserId(string IdAp)
             {
